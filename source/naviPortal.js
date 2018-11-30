@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Button
 } from 'react-native';
 import {
   createAppContainer,
@@ -12,6 +11,8 @@ import {
   NavigationEvents,
   createBottomTabNavigator
 } from 'react-navigation'; // Version can be specified in package.json
+// import ThemeLoader from 'theme/ThemeLoader';
+import { Icon } from 'react-native-elements';
 
 // Tab1st
 import HomeScreen from './Tab1st/home';
@@ -62,12 +63,30 @@ const AllStack = {
   }
 };
 
+/**
+ * https://oblador.github.io/react-native-vector-icons/
+ * Icon.type
+ * ['ionicon', 'entypo']
+ */
+const icon_size_normal = 24;
+const icon_size_focus = 28;
+const color_main = 'orange';
+const color_default = '#939393';
+
 const Tab1stStackNavi = createStackNavigator(
   AllStack,
   {
     initialRouteName: 'Home',
     navigationOptions: ({ navigation }) => ({
       tabBarLabel: '首页',
+      tabBarIcon: ({ tintColor, focused, horizontal }) => (
+        <Icon
+          name={'ios-home'}
+          type={'ionicon'}
+          size={focused ? icon_size_focus : icon_size_normal}
+          color={focused ? color_main : color_default}
+        />
+      ),
     })
   }
 );
@@ -78,6 +97,16 @@ const Tab2ndStackNavi = createStackNavigator(
     initialRouteName: 'Discovery',
     navigationOptions: ({ navigation }) => ({
       tabBarLabel: '发现',
+      tabBarIcon: ({ tintColor, focused, horizontal }) => (
+        <Icon
+          name={'ios-paper-plane'}
+          // name={'md-jet'}
+          // name={'md-compass'}
+          type={'ionicon'}
+          size={focused ? icon_size_focus : icon_size_normal}
+          color={focused ? color_main : color_default}
+        />
+      ),
     })
   }
 );
@@ -88,6 +117,15 @@ const Tab3rdStackNavi = createStackNavigator(
     initialRouteName: 'New',
     navigationOptions: ({ navigation }) => ({
       tabBarLabel: '创建',
+      tabBarIcon: ({ tintColor, focused, horizontal }) => (
+        <Icon
+          name={'md-paw'}
+          // name={'ios-add-circle'}
+          type={'ionicon'}
+          size={focused ? icon_size_focus : icon_size_normal}
+          color={focused ? color_main : color_default}
+        />
+      ),
     })
   }
 );
@@ -98,6 +136,15 @@ const Tab4thStackNavi = createStackNavigator(
     initialRouteName: 'Message',
     navigationOptions: ({ navigation }) => ({
       tabBarLabel: '消息',
+      tabBarIcon: ({ tintColor, focused, horizontal }) => (
+        <Icon
+          // name={'ios-notifications'}
+          name={'md-notifications'}
+          type={'ionicon'}
+          size={focused ? icon_size_focus : icon_size_normal}
+          color={focused ? color_main : color_default}
+        />
+      ),
     })
   }
 );
@@ -108,6 +155,16 @@ const Tab5thStackNavi = createStackNavigator(
     initialRouteName: 'Mine',
     navigationOptions: ({ navigation }) => ({
       tabBarLabel: '我的',
+      tabBarIcon: ({ tintColor, focused, horizontal }) => (
+        <Icon
+          name={'md-contact'}
+          // name={'ios-contact'}
+          type={'ionicon'}
+          // type={'entypo'}
+          size={focused ? icon_size_focus : icon_size_normal}
+          color={focused ? color_main : color_default}
+        />
+      ),
     })
   }
 );
@@ -125,7 +182,7 @@ const TabNavigator = createBottomTabNavigator(
     tabBarOptions: {
       activeTintColor: 'orange',
       // activeBackgroundColor: 'gray',
-      // inactiveTintColor: 'black',
+      // inactiveTintColor: null,
       // inactiveBackgroundColor: '',
       // showLabel: true,
       // showIcon: true,
