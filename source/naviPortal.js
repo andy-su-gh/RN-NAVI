@@ -18,6 +18,7 @@ import { Icon } from 'react-native-elements';
 import HomeScreen from './Tab1st/home';
 // Tab2nd
 import DiscoveryScreen from './Tab2nd/discovery';
+import FlatListDemo from './Tab2nd/flatListDemo';
 // Tab3rd
 import NewScreen from './Tab3rd/new';
 // Tab4th
@@ -33,6 +34,7 @@ import OtherScreen from './TabOther/other';
 
 
 const AllStack = {
+  //Tab1st
   Home: {
     screen: HomeScreen,
   },
@@ -49,9 +51,15 @@ const AllStack = {
     screen: ProfileScreen,
   },
 
+  //Tab2nd
   Discovery: {
     screen: DiscoveryScreen,
   },
+  FlatListDemo: {
+    screen: FlatListDemo,
+  },
+
+  //Tab3rd
   New: {
     screen: NewScreen,
   },
