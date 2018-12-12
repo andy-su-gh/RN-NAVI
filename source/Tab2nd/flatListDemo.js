@@ -96,7 +96,7 @@ export default class FlatListDemo extends Component {
 
     render() {
         return (
-            <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0, }}>
+            <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0, marginTop: 0}}>
                 <FlatList
                     data={this.state.data}
                     renderItem={({ item }) => (
