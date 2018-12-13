@@ -16,6 +16,15 @@ export default class FlatListDemo extends Component {
         };
     }
 
+    static navigationOptions = ({ navigation }) => ({
+        title: `${navigation.state.params.title}`,
+        headerTitleStyle: {
+            textAlign: 'center',
+            flex: 1,
+        },
+        headerRight: (<View style={{ width: 40 }}></View>)
+    });
+
     componentDidMount() {
         this.makeRemoteRequest();
     }

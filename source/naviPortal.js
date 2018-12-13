@@ -19,6 +19,7 @@ import HomeScreen from './Tab1st/home';
 // Tab2nd
 import DiscoveryScreen from './Tab2nd/discovery';
 import FlatListDemo from './Tab2nd/flatListDemo';
+import PdfDemo from './Tab2nd/pdfDemo';
 import EmptyPage from './Tab2nd/emptyPage';
 // Tab3rd
 import NewScreen from './Tab3rd/new';
@@ -58,6 +59,9 @@ const AllStack = {
   },
   FlatListDemo: {
     screen: FlatListDemo,
+  },
+  PdfDemo: {
+    screen: PdfDemo,
   },
   EmptyPage: {
     screen: EmptyPage,
@@ -128,7 +132,7 @@ const Tab3rdStackNavi = createStackNavigator(
   {
     initialRouteName: 'New',
     navigationOptions: ({ navigation }) => ({
-      tabBarLabel: '创建',
+      tabBarLabel: '新建',
       tabBarIcon: ({ tintColor, focused, horizontal }) => (
         <Icon
           name={'md-paw'}
