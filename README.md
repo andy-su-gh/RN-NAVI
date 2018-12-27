@@ -3,6 +3,7 @@ React Native Navigation Practice
 
 
 # PACKAGES
+# npm uninstall --save react-native-fetch-blob
 npm install react-native-elements --save
 npm i --save react-native-vector-icons
 react-native link react-native-vector-icons
