@@ -75,12 +75,8 @@ import com.android.build.OutputFile
 project.ext.react = [
     entryFile: "index.js"
 ]
-project.ext.vectoricons = [
-    iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf' ] // Name of the font files you want to copy
-]
 
 apply from: "../../node_modules/react-native/react.gradle"
-apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -141,9 +137,9 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-pdf')
     compile project(':rn-fetch-blob')
     compile project(':react-native-vector-icons')
+    compile project(':react-native-pdf')
     compile project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
