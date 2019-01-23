@@ -173,8 +173,8 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     touchableContainer: {
-        borderColor: '#FF03AA',
-        borderWidth: 0.5,
+        borderColor: 'orange',
+        borderWidth: 1,
         borderRadius: 5,
         flex: 1,
         padding: 3,
