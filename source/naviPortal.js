@@ -19,6 +19,7 @@ import HomeScreen from './Tab1st/home';
 // Tab2nd
 import DiscoveryScreen from './Tab2nd/discovery';
 import FlatListDemo from './Tab2nd/flatListDemo';
+import FlatListDemo2 from './Tab2nd/flatListDemo2';
 import PdfDemo from './Tab2nd/pdfDemo';
 import EmptyPage from './Tab2nd/emptyPage';
 // Tab3rd
@@ -59,6 +60,9 @@ const AllStack = {
   },
   FlatListDemo: {
     screen: FlatListDemo,
+  },
+  FlatListDemo2: {
+    screen: FlatListDemo2,
   },
   PdfDemo: {
     screen: PdfDemo,

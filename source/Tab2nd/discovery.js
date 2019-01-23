@@ -24,6 +24,11 @@ export default class DiscoveryScreen extends Component {
                     onPress={() => {
                         this.props.navigation.push('FlatListDemo', { title: 'FlatList Demo'});
                     }}></Button>
+                <Button 
+                    title='FlatList Demo 2'
+                    onPress={() => {
+                        this.props.navigation.push('FlatListDemo2', { title: 'FlatList Demo 2'});
+                    }}></Button>
                 {this.separaterView()}
                 <Button
                     title='PDF Demo'
