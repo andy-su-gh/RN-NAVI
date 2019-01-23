@@ -37,9 +37,9 @@ export default class DiscoveryScreen extends Component {
                     }}></Button>
                 {this.separaterView()}
                 <Button
-                    title='Empty Page'
+                    title='Datetime Picker'
                     onPress={() => {
-                        this.props.navigation.push('EmptyPage', { title: 'WHATEVER' });
+                        this.props.navigation.push('EmptyPage', { title: 'Datetime Picker' });
                     }}></Button>
             </View>
         );
