@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, FlatList } from 'react-native';
+import { View, Text, Button, StyleSheet, FlatList, 
+    TouchableOpacity,
+} from 'react-native';
 
 export default class DiscoveryScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -41,6 +43,14 @@ export default class DiscoveryScreen extends Component {
                     onPress={() => {
                         this.props.navigation.push('EmptyPage', { title: 'Datetime Picker' });
                     }}></Button>
+                {this.separaterView()}
+                <TouchableOpacity style={styles.buttonContainer}
+                    onPress={() => {
+                        this.props.navigation.push('KeyboardAvoidingViewDemo', { title: 'KeyboardAvoidingView' });
+                    }}
+                >
+                    <Text style={styles.buttonText}>KeyboardAvoidingView Demo</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -52,4 +62,17 @@ const styles = StyleSheet.create({
         // justifyContent: 'center',
         marginHorizontal: 10,
     },
+    buttonContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 0.5,
+        borderColor: 'orange',
+        borderRadius: 5,
+        width: '100%',
+        padding: 8,
+    },
+    buttonText: {
+        fontSize: 18,
+        color: '#007AFF',
+    }
 });

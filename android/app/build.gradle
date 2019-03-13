@@ -96,16 +96,15 @@ def enableProguardInReleaseBuilds = false
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
-
     defaultConfig {
         applicationId "com.navi"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionName '1.0.1.12345'
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        versionCode 1
     }
     splits {
         abi {
@@ -126,13 +125,15 @@ android {
         variant.outputs.each { output ->
             // For each separate APK per architecture, set a unique version code as described here:
             // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
-            def versionCodes = ["armeabi-v7a":1, "x86":2]
+            def versionCodes = ["armeabi-v7a": 1, "x86": 2]
             def abi = output.getFilter(OutputFile.ABI)
             if (abi != null) {  // null for the universal-debug, universal-release variants
                 output.versionCodeOverride =
                         versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
             }
         }
+    }
+    productFlavors {
     }
 }
 
@@ -141,9 +142,10 @@ dependencies {
     compile project(':react-native-vector-icons')
     compile project(':react-native-pdf')
     compile project(':react-native-gesture-handler')
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
-    implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation 'com.facebook.react:react-native:+'
+    // From node_modules
 }
 
 // Run this once to be able to run the application with BUCK

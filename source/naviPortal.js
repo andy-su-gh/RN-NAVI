@@ -22,6 +22,7 @@ import FlatListDemo from './Tab2nd/flatListDemo';
 import FlatListDemo2 from './Tab2nd/flatListDemo2';
 import PdfDemo from './Tab2nd/pdfDemo';
 import EmptyPage from './Tab2nd/emptyPage';
+import KeyboardAvoidingViewDemo from './Tab2nd/keyboardAvoidingViewDemo';
 // Tab3rd
 import NewScreen from './Tab3rd/new';
 // Tab4th
@@ -69,6 +70,9 @@ const AllStack = {
   },
   EmptyPage: {
     screen: EmptyPage,
+  },
+  KeyboardAvoidingViewDemo: {
+    screen: KeyboardAvoidingViewDemo,
   },
 
   //Tab3rd
