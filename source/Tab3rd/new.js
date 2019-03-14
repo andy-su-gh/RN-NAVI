@@ -55,6 +55,12 @@ export default class NewScreen extends Component {
                         <Text style={styles.resultValueText}>{this.state.result && this.state.result.description || ''}</Text>
                     </Text>
                 </View>
+                <View style={{height: 15}}></View>
+
+                <Text style={styles.resultInfoText}>Solution</Text>
+                <View style={styles.resultContainer}>
+                    <Text>From this demo, I simply control Keyboard manually with listen 'keyboardWillShow' and 'keyboardWillHide'. {"\n"}{"\n"}* I was tried KeyboardAvoidingView. It works well from iOS, but have UI issue (it scrolled up too much when keyboard shown) from Android :(</Text>
+                </View>
 
                 <ModalDialog
                     visible={this.state.showModalDialog}

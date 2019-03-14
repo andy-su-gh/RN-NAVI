@@ -8,7 +8,8 @@ import {
     Image,
     KeyboardAvoidingView,
     ScrollView,
-    StyleSheet
+    StyleSheet,
+    Keyboard,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -22,6 +23,7 @@ export default class ModalDemo extends Component {
             value: '0',
             name: '',
             description: '',
+            kbShowPositionY: 0, // set 0 is fine for this case. if we have a lot of items from scrollView, we should save the scrollView position on scroll
         }
     }
 
@@ -48,9 +50,25 @@ export default class ModalDemo extends Component {
     }
 
     componentDidMount() {
+        this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardDidShow);
+        this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardDidHide);
     }
 
     componentWillUnmount() {
+        this.keyboardWillShowListener && this.keyboardWillShowListener.remove();
+        this.keyboardWillHideListener && this.keyboardWillHideListener.remove();
+    }
+
+    keyboardDidShow = (e) => {
+        // console.log('keyboardDidShow', e.startCoordinates.height);
+        // this.setState({
+        //     kbShowPositionY: this.state.scrollViewPositionY,
+        // });
+        this._scrollView.scrollTo({ x: 0, y: this.state.kbShowPositionY + e.startCoordinates.height, animated: true });
+    }
+
+    keyboardDidHide = () => {
+        this._scrollView.scrollTo({ x: 0, y: this.state.kbShowPositionY, animated: true });
     }
 
     componentDidUpdate(prevProps) {
@@ -84,9 +102,9 @@ export default class ModalDemo extends Component {
                 supportedOrientations={this.props.supportedOrientations}
                 onRequestClose={() => { }} //如果是Android设备 必须有此方法
             >
-                <ScrollView contentContainerStyle={styles.container}>
+                {/* <KeyboardAvoidingView style={styles.container} behavior='padding' enabled keyboardVerticalOffset={-500}> */}
+                        <ScrollView contentContainerStyle={styles.container}>
                         <View style={{ flex: 1 }}></View>
-                        <KeyboardAvoidingView style={{width: 280, height: '100%', alignItems: 'center', justifyContent: 'center'}} behavior='padding' enabled>
                         <View style={styles.dialogVisualContainer}>
                             <View style={styles.satdDialogTitleContainer} >
                                 <Text style={styles.dialogTitleContent} > {this.props.title} </Text>
@@ -106,39 +124,6 @@ export default class ModalDemo extends Component {
                                     // onSubmitEditing={() => { this.onPressOk(); }}
                                     />
                                 </View>
-                                {/* <View style={styles.bcConfirmModalInputContainer} >
-                                    <TextInput
-                                        ref='numberInputBox'
-                                        autoFocus={true}
-                                        underlineColorAndroid={'transparent'}
-                                        placeholder={'名称'}
-                                        style={[styles.bcConfirmModalPasswordInput]}
-                                        onChangeText={(name) => { this.setState({ name }) }}
-                                    // onSubmitEditing={() => { this.onPressOk(); }}
-                                    />
-                                </View>
-                                <View style={styles.bcConfirmModalInputContainer} >
-                                    <TextInput
-                                        ref='numberInputBox'
-                                        autoFocus={true}
-                                        underlineColorAndroid={'transparent'}
-                                        placeholder={'名称'}
-                                        style={[styles.bcConfirmModalPasswordInput]}
-                                        onChangeText={(name) => { this.setState({ name }) }}
-                                    // onSubmitEditing={() => { this.onPressOk(); }}
-                                    />
-                                </View>
-                                <View style={styles.bcConfirmModalInputContainer} >
-                                    <TextInput
-                                        ref='numberInputBox'
-                                        autoFocus={true}
-                                        underlineColorAndroid={'transparent'}
-                                        placeholder={'名称'}
-                                        style={[styles.bcConfirmModalPasswordInput]}
-                                        onChangeText={(name) => { this.setState({ name }) }}
-                                    // onSubmitEditing={() => { this.onPressOk(); }}
-                                    />
-                                </View> */}
                                 
                                 <View style={{ height: 5 }}></View>
 
@@ -175,9 +160,9 @@ export default class ModalDemo extends Component {
                                 </TouchableOpacity>
                             </View>
                         </View>
-                        </KeyboardAvoidingView>
                         <View style={{ flex: 1 }}></View>
                 </ScrollView>
+                        {/* </KeyboardAvoidingView> */}
             </Modal>
         );
     }
