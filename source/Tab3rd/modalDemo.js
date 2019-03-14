@@ -10,6 +10,7 @@ import {
     ScrollView,
     StyleSheet,
     Keyboard,
+    Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -60,15 +61,24 @@ export default class ModalDemo extends Component {
     }
 
     keyboardDidShow = (e) => {
-        // console.log('keyboardDidShow', e.startCoordinates.height);
+        console.log('keyboardDidShow', e.startCoordinates.height);
         // this.setState({
         //     kbShowPositionY: this.state.scrollViewPositionY,
         // });
-        this._scrollView.scrollTo({ x: 0, y: this.state.kbShowPositionY + e.startCoordinates.height, animated: true });
+        let offset = 0;
+
+        if (Platform.OS === 'android') {
+            offset = e.startCoordinates.height;
+        } else {
+            offset = e.startCoordinates.height / 2;
+        }
+        this._scrollView.scrollTo({ x: 0, y: this.state.kbShowPositionY + offset, animated: true });
     }
 
     keyboardDidHide = () => {
-        this._scrollView.scrollTo({ x: 0, y: this.state.kbShowPositionY, animated: true });
+        // if (Platform.OS === 'android') {
+            this._scrollView.scrollTo({ x: 0, y: this.state.kbShowPositionY, animated: true });
+        // }
     }
 
     componentDidUpdate(prevProps) {
@@ -103,7 +113,8 @@ export default class ModalDemo extends Component {
                 onRequestClose={() => { }} //如果是Android设备 必须有此方法
             >
                 {/* <KeyboardAvoidingView style={styles.container} behavior='padding' enabled keyboardVerticalOffset={-500}> */}
-                        <ScrollView contentContainerStyle={styles.container}>
+                        <ScrollView contentContainerStyle={styles.container}
+                        ref={component => this._scrollView = component}>
                         <View style={{ flex: 1 }}></View>
                         <View style={styles.dialogVisualContainer}>
                             <View style={styles.satdDialogTitleContainer} >

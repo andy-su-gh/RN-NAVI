@@ -52,7 +52,7 @@ export default class KeyboardAvoidingViewDemo extends Component {
     }
 
     keyboardDidShow = (e) => {
-        console.log('keyboardDidShow', e.startCoordinates.height);
+        // console.log('keyboardDidShow', e.startCoordinates.height);
         this.setState({
             kbShowPositionY: this.state.scrollViewPositionY,
         });
@@ -67,7 +67,7 @@ export default class KeyboardAvoidingViewDemo extends Component {
 
     handleScroll = (event) => {
         let y = event.nativeEvent.contentOffset.y
-        console.log(y);
+        // console.log(y);
         this.setState({
             scrollViewPositionY: y,
         });
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     sectionContainer: {
-        marginTop: 10
+        marginTop: 10,
     },
     sectionTitleContainer: {
 
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
         height: 36,
         marginTop: 5,
         // padding: padding.sm,
-        paddingVertical: 3,
+        // paddingVertical: 3,
         // paddingHorizontal: padding.sm,
         // backgroundColor: '#6611dd',
     },
@@ -194,11 +194,12 @@ const styles = StyleSheet.create({
         // marginLeft: padding.sm,
         // marginHorizontal: 10,
         paddingHorizontal: 10,
+        paddingVertical: 4,
         width: '100%',
         height: 30,
         fontSize: 14,
         // fontWeight: 'normal',
         // flex: 1,
-        // backgroundColor: '#6611dd'
+        // backgroundColor: '#Dd2d'
     },
 });
