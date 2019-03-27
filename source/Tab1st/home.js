@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
+import MapView from 'react-native-maps';
 
 export default class HomeScreen extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            region: null,
+        };
+    }
+
     static navigationOptions = ({ navigation }) => ({
         title: '首页',
         headerTitleStyle: {
@@ -11,26 +19,36 @@ export default class HomeScreen extends Component {
         },
     });
 
+    componentDidMount() {
+        const { region, } = this.getInitialState();
+        this.setState({
+            region
+        })
+    }
+
+    getInitialState() {
+        return {
+            region: {
+                latitude: 37.78825,
+                longitude: -122.4324,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+            },
+        };
+    }
+
+    onRegionChange(region) {
+        // this.setState({ region });
+    }
+
     render() {
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                {/* <Text>Home Screen</Text> */}
-                {/* <Button
-                    title="Go to Details"
-                    onPress={() => {
-                        // this.props.navigation.dispatch(StackActions.reset({
-                        //   index: 0,
-                        //   actions: [
-                        //     NavigationActions.navigate({ routeName: 'Details', name: 'Child Route' })
-                        //   ],
-                        // }))
-                        this.props.navigation.navigate(
-                            'Details',
-                            {},
-                        );
-                    }}
-                /> */}
-            </View>
+            <MapView
+                style={{ flex: 1 }}
+                region={this.state.region}
+                showsUserLocation={true}
+                onRegionChange={this.onRegionChange}
+            />
         );
     }
 }
