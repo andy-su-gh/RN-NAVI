@@ -141,7 +141,7 @@ export default class MessageScreen extends Component {
     emptyComponent = () => null
 
     renderHeader = () => {
-        return this.renderSeparator();
+        return null;
     }
 
     renderFooter = () => null
@@ -319,7 +319,7 @@ export default class MessageScreen extends Component {
                     initialLayout={{ width: dimensions.fullWidth, }}
                 /> */}
                 <ScrollableTabView
-                    style={{ marginTop: 20, }}
+                    style={{ marginTop: 0, }}
                     initialPage={0}
                     renderTabBar={() => <ScrollableTabBar backgroundColor={"orange"}
                         activeTextColor={"white"}
