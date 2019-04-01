@@ -11,6 +11,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.6.3",
     "react-native": "^0.57.8",
+    "react-native-calendars": "^1.24.0",
     "react-native-elements": "^0.19.1",
     "react-native-gesture-handler": "^1.0.10",
     "react-native-maps": "^0.23.0",

@@ -23,6 +23,7 @@ import FlatListDemo2 from './Tab2nd/flatListDemo2';
 import PdfDemo from './Tab2nd/pdfDemo';
 import EmptyPage from './Tab2nd/emptyPage';
 import KeyboardAvoidingViewDemo from './Tab2nd/keyboardAvoidingViewDemo';
+import CalendarsDemo from './Tab2nd/calendarsDemoPage';
 // Tab3rd
 import NewScreen from './Tab3rd/new';
 // Tab4th
@@ -73,6 +74,9 @@ const AllStack = {
   },
   KeyboardAvoidingViewDemo: {
     screen: KeyboardAvoidingViewDemo,
+  },
+  CalendarsDemo: {
+    screen: CalendarsDemo,
   },
 
   //Tab3rd
