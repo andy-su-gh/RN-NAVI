@@ -33,6 +33,15 @@ export default class SectionListDemo extends Component {
       turnOnOptions: [],
       menuItems: [],
       virtualized: false,
+      infoValue: {
+        isStart: true,
+        isEnd: false,
+        painLevel: 4,
+        isUseBox: false,
+        boxEffect: 0,
+        isUseSooz: true,
+        soozEffect: 2,
+      },
     };
     this.onDayPress = this.onDayPress.bind(this);
   }
@@ -122,20 +131,85 @@ export default class SectionListDemo extends Component {
 
   buildSwitchView = (item) => {
     return (
-      <TouchableOpacity key={item.key} onPress={() => { this.onPressSwitchItem(item); }}>
+      <TouchableOpacity key={item.key} onPress={() => { this.onPressSwitchItemEx(item); }}>
         <Image style={{}} source={this.optionIsTurnOn(item) ? Icons.care.icon_switch_on : Icons.care.icon_switch_off} />
       </TouchableOpacity>
     );
   }
 
-  optionIsTurnOn = (option) => {
-    const { turnOnOptions, } = this.state;
-    return turnOnOptions.find(item => item.key === option.key);
+  optionIsTurnOn = (item) => {
+    const { infoValue, } = this.state;
+    // return turnOnOptions.find(item => item.key === option.key);
+    switch (item.key) {
+      case '0': {
+        return infoValue.isStart;
+      }
+      case '1': {
+        return infoValue.isEnd;
+      }
+      case '3': {
+        return infoValue.isUseBox;
+      }
+      case '5': {
+        return infoValue.isUseSooz;
+      }
+      default : {
+        return false;
+      }
+    }
+  }
+
+  onPressSwitchItemEx = (item) => {
+    const { infoValue, } = this.state;
+    console.log('before press', item.key, infoValue);
+    // const newInfoValue = {
+    //   isStart: infoValue.isStart,
+    //   isEnd: infoValue.isEnd,
+    //   painLevel: infoValue.painLevel,
+    //   isUseBox: infoValue.isUseBox,
+    //   boxEffect: infoValue.boxEffect,
+    //   isUseSooz: infoValue.isUseSooz,
+    //   soozEffect: infoValue.soozEffect,
+    // };
+    // ES6, copy to new object
+    const newInfoValue = Object.assign({}, infoValue);
+
+    switch (item.key) {
+      case '0': {
+        newInfoValue.isStart = !newInfoValue.isStart;
+        // infoValue.isStart = !infoValue.isStart;
+        break;
+      }
+      case '1': {
+        newInfoValue.isEnd = !newInfoValue.isEnd;
+        // infoValue.isEnd = !infoValue.isEnd;
+        break;
+      }
+      case '3': {
+        newInfoValue.isUseBox = !newInfoValue.isUseBox;
+        // infoValue.isUseBox = !infoValue.isUseBox;
+        break;
+      }
+      case '5': {
+        newInfoValue.isUseSooz = !newInfoValue.isUseSooz;
+        // infoValue.isUseSooz = !infoValue.isUseSooz;
+        break;
+      }
+      default : { }
+    }
+    // console.log('after press state', item.key, infoValue);
+    // console.log('after press newValue',item.key, newInfoValue);
+    this.setState({
+      infoValue: newInfoValue,
+    }, () => {
+      console.log('after press setState', this.state.infoValue);
+    });
   }
 
   buildLevelView = (item) => {
+    const levels = 5;
     const levelItems = [];
-    for (let i = 0; i < 5; i += 1) {
+    for (let i = 0; i < levels; i += 1) {
       //
       const levelItem = (
         <TouchableOpacity key={`${item.key}${i}`} onPress={() => { this.onPressLevelItem(item, i); }}>
@@ -212,7 +286,7 @@ export default class SectionListDemo extends Component {
   }
 
   render() {
-    const { menuItems, virtualized, turnOnOptions, } = this.state;
+    const { menuItems, virtualized, infoValue, } = this.state;
     return (
       <ScrollView style={styles.container}>
         <View style={{ padding: 10, alignItems: 'center', }}>
@@ -220,7 +294,7 @@ export default class SectionListDemo extends Component {
         </View>
         <SectionList
             keyExtractor={this.keyExtractor}
-            extraData={turnOnOptions}
+            extraData={infoValue}
             sections={menuItems}
             // ListHeaderComponent={this.listHeaderComponent}
             // renderSectionHeader={this.renderSectionHeader}
