@@ -213,7 +213,7 @@ export default class SectionListDemo extends Component {
       //
       const levelItem = (
         <TouchableOpacity key={`${item.key}${i}`} onPress={() => { this.onPressLevelItem(item, i); }}>
-          <Image style={{}} source={item.value > i ? Icons.care[item.levelIcon.on] : Icons.care[item.levelIcon.off]} />
+          <Image style={{}} source={this.getLevelValue(item) > i ? Icons.care[item.levelIcon.on] : Icons.care[item.levelIcon.off]} />
         </TouchableOpacity>
       );
       levelItems.push(levelItem);
@@ -225,64 +225,47 @@ export default class SectionListDemo extends Component {
     );
   }
 
-  onPressLevelItem = (option, index) => {
-    console.log('onPressLevelItem', option, index);
-  }
-
-  onPressSwitchItem = (option) => {
-    console.log('onPressSwitchItem', option.title, option.value);
-    const { turnOnOptions, } = this.state;
-    console.log('before press', turnOnOptions);
-    if (this.optionIsTurnOn(option)) {
-      // remove it
-      const idx = turnOnOptions.indexOf(option);
-      turnOnOptions.splice(idx, 1);
-    } else {
-      // add it
-      turnOnOptions.push(option);
+  getLevelValue = (item) => {
+    const { infoValue, } = this.state;
+    switch (item.key) {
+      case '2': {
+        return infoValue.painLevel;
+      }
+      case '4': {
+        return infoValue.boxEffect;
+      }
+      case '6': {
+        return infoValue.soozEffect;
+      }
+      default: {
+        return 0;
+      }
     }
-
-    this.setState({ turnOnOptions, }, () => {
-      console.log('after press', this.state.turnOnOptions);
+  }
+  onPressLevelItem = (item, index) => {
+    console.log('onPressLevelItem', item, index);
+    const { infoValue, } = this.state;
+    const newInfoValue = Object.assign({}, infoValue);
+    switch (item.key) {
+      case '2': {
+        newInfoValue.painLevel = index + 1;
+        break;
+      }
+      case '4': {
+        newInfoValue.boxEffect = index + 1;
+        break;
+      }
+      case '6': {
+        newInfoValue.soozEffect = index + 1;
+        break;
+      }
+      default: { }
+    }
+    this.setState({
+      infoValue: newInfoValue,
+    }, () => {
+      // console.log('after press setState', this.state.infoValue);
     });
-
-    // const {
-    //   dayStatus1_start,
-    //   dayStatus2_end,
-    //   dayStatus3_pain,
-    //   dayStatus4_useBox,
-    //   dayStatus5_boxEffect,
-    //   dayStatus6_useSooz,
-    //   dayStatus7_soozEffect,
-    // } = this.state;
-    // console.log('onPressSwitchItem', item);
-    // console.log('dayStatus1_start', dayStatus1_start);
-    // console.log('dayStatus2_end', dayStatus2_end);
-    // console.log('dayStatus4_useBox', dayStatus4_useBox);
-    // console.log('dayStatus6_useSooz', dayStatus6_useSooz);
-
-    // switch (item.bindState) {
-    //   case 'dayStatus1_start': {
-    //     this.setState({ dayStatus1_start: !dayStatus1_start, });
-    //     break;
-    //   }
-    //   case 'dayStatus2_end': {
-    //     this.setState({ dayStatus2_end: !dayStatus2_end, });
-    //     break;
-    //   }
-    //   // case dayStatus3_pain: 2,
-    //   case 'dayStatus4_useBox': {
-    //     this.setState({ dayStatus4_useBox: !dayStatus4_useBox, });
-    //     break;
-    //   }
-    //   // case dayStatus5_boxEffect: 3,
-    //   case 'dayStatus6_useSooz': {
-    //     this.setState({ dayStatus6_useSooz: !dayStatus6_useSooz, });
-    //     break;
-    //   }
-    //   // case dayStatus7_soozEffect: 4,
-    //   default: {}
-    // }
   }
 
   render() {
