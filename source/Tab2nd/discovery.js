@@ -60,6 +60,14 @@ export default class DiscoveryScreen extends Component {
                 >
                     <Text style={styles.buttonText}>Calendars Demo</Text>
                 </TouchableOpacity>
+                {this.separaterView()}
+                <TouchableOpacity style={styles.buttonContainer}
+                    onPress={() => {
+                        this.props.navigation.push('SectionListDemo', { title: 'SectionList' });
+                    }}
+                >
+                    <Text style={styles.buttonText}>SectionList Demo</Text>
+                </TouchableOpacity>
             </View>
         );
     }

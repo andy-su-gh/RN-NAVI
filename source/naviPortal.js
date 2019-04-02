@@ -24,6 +24,7 @@ import PdfDemo from './Tab2nd/pdfDemo';
 import EmptyPage from './Tab2nd/emptyPage';
 import KeyboardAvoidingViewDemo from './Tab2nd/keyboardAvoidingViewDemo';
 import CalendarsDemo from './Tab2nd/calendarsDemoPage';
+import SectionListDemo from './Tab2nd/sectionListDemo'
 // Tab3rd
 import NewScreen from './Tab3rd/new';
 // Tab4th
@@ -77,6 +78,9 @@ const AllStack = {
   },
   CalendarsDemo: {
     screen: CalendarsDemo,
+  },
+  SectionListDemo: {
+    screen: SectionListDemo,
   },
 
   //Tab3rd
