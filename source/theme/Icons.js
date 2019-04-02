@@ -16,6 +16,19 @@ const Icons = {
     icon_love_myself8_lit: require('res/images/icon_love_myself8_lit.png'),
     icon_love_myself8: require('res/images/icon_love_myself8.png'),
   },
+  mine: {
+    bg_mine: require('res/images/mine/img_bg_mine.png'),
+    icon_mine: require('res/images/mine/icon_mine.png'),
+    icon_setting: require('res/images/mine/icon_my_set.png'),
+    icon_arrows_pink_r: require('res/images/mine/icon_arrows_r.png'),
+    icon_my_order_list: require('res/images/mine/icon_my_03.png'),
+    icon_my_coupon: require('res/images/mine/icon_my_02.png'),
+    icon_my_care: require('res/images/mine/icon_my_01.png'),
+    icon_help: require('res/images/mine/icon_my_help.png'),
+    icon_version: require('res/images/mine/icon_my_versions.png'),
+    bg_coupon_gray: require('res/images/mine/img_bg4_gray.png'),
+    bg_coupon_pink: require('res/images/mine/img_bg4_pink.png'),
+  },
 };
 
 export default Icons;
