@@ -48,18 +48,18 @@ export default class MessageScreen extends Component {
             {
                 key: '0',
                 id: '12',
-                title: '满 2 元可用',
+                title: '满 200 元可用',
                 type: '', // 直减，N折
-                value: 2, // 直减2元，2折
-                validityPeriod: '2019/03/01',
+                value: 20, // 直减2元，2折
+                validityPeriod: '2019/03/01 - 2019/10/01',
             },
             {
                 key: '1',
                 id: '23',
-                title: '满 5 元可用',
+                title: '满 500 元可用',
                 type: '', // 直减，N折
-                value: 5, // 直减2元，2折
-                validityPeriod: '2019/03/01', // 2019/03/01 00:00:00
+                value: 100, // 直减2元，2折
+                validityPeriod: '2019/03/01 - 2019/10/01', // 2019/03/01 00:00:00
             },
             {
                 key: '2',
@@ -67,15 +67,15 @@ export default class MessageScreen extends Component {
                 title: '满 5 元可用',
                 type: '', // 直减，N折
                 value: 5, // 直减2元，2折
-                validityPeriod: '2019/03/01', // 2019/03/01 00:00:00
+                validityPeriod: '2019/03/01 - 2019/10/01', // 2019/03/01 00:00:00
             },
             {
                 key: '3',
                 id: 'asdfasdfasdf',
-                title: '满 5 元可用',
+                title: '满 5000 元可用',
                 type: '', // 直减，N折
-                value: 5, // 直减2元，2折
-                validityPeriod: '2019/03/01', // 2019/03/01 00:00:00
+                value: 500, // 直减2元，2折
+                validityPeriod: '2019/03/01 - 2019/10/01', // 2019/03/01 00:00:00
             },
             {
                 key: '4',
@@ -83,7 +83,7 @@ export default class MessageScreen extends Component {
                 title: '满 5 元可用',
                 type: '', // 直减，N折
                 value: 5, // 直减2元，2折
-                validityPeriod: '2019/03/01', // 2019/03/01 00:00:00
+                validityPeriod: '2019/03/01 - 2019/10/01', // 2019/03/01 00:00:00
             },
         ];
 
@@ -94,7 +94,7 @@ export default class MessageScreen extends Component {
                 title: '满 2 元可用',
                 type: '', // 直减，N折
                 value: 2, // 直减2元，2折
-                validityPeriod: '2019/03/01',
+                validityPeriod: '2019/03/01 - 2019/10/01',
             },
             {
                 key: '1',
@@ -102,7 +102,7 @@ export default class MessageScreen extends Component {
                 title: '满 5 元可用',
                 type: '', // 直减，N折
                 value: 5, // 直减2元，2折
-                validityPeriod: '2019/03/01', // 2019/03/01 00:00:00
+                validityPeriod: '2019/03/01 - 2019/10/01', // 2019/03/01 00:00:00
             },
             {
                 key: '2',
@@ -110,7 +110,7 @@ export default class MessageScreen extends Component {
                 title: '满 5 元可用',
                 type: '', // 直减，N折
                 value: 5, // 直减2元，2折
-                validityPeriod: '2019/03/01', // 2019/03/01 00:00:00
+                validityPeriod: '2019/03/01 - 2019/10/01', // 2019/03/01 00:00:00
             },
         ];
 
@@ -121,7 +121,7 @@ export default class MessageScreen extends Component {
                 title: '满 2 元可用',
                 type: '', // 直减，N折
                 value: 2, // 直减2元，2折
-                validityPeriod: '2019/03/01',
+                validityPeriod: '2019/03/01 - 2019/10/01',
             },
             {
                 key: '1',
@@ -129,7 +129,7 @@ export default class MessageScreen extends Component {
                 title: '满 5 元可用',
                 type: '', // 直减，N折
                 value: 5, // 直减2元，2折
-                validityPeriod: '2019/03/01', // 2019/03/01 00:00:00
+                validityPeriod: '2019/03/01 - 2019/10/01', // 2019/03/01 00:00:00
             },
         ];
 
@@ -177,7 +177,7 @@ export default class MessageScreen extends Component {
                     //         : Icons.mine.bg_coupon_pink
                     // }
                 >
-                    <View style={{ paddingHorizontal: 5, }}>
+                    {/* <View style={{ paddingHorizontal: 5, }}>
                         <Text style={styles.couponCurrencySymbolText}>¥
                   <Text style={styles.couponValueText}>{element.value}</Text>
                         </Text>
@@ -185,6 +185,23 @@ export default class MessageScreen extends Component {
                     <View style={{ flex: 1, }}>
                         <Text style={styles.couponTitleText}>{element.title}</Text>
                         <Text style={styles.couponValidityPeriodText}>{`有效期至 ${element.validityPeriod}`}</Text>
+                    </View> */}
+                    <View style={styles.couponItemContainer}>
+                        <View style={styles.couponItemValueContainer}>
+                            <Text style={[styles.couponValueText, key === 'expired' ? styles.grayText : {},]}>{element.value}</Text>
+                            <View style={[styles.couponCurrencySymbolCircle, key === 'expired' ? styles.grayBackground : {},]}>
+                                <Text style={styles.couponCurrencySymbolText}>¥</Text>
+                            </View>
+                        </View>
+                        <View style={styles.couponItemInfoContainer}>
+                            <Text style={[styles.couponTitleText, key === 'expired' ? styles.grayText : {},]}>{element.title}</Text>
+                            <Text style={styles.couponValidityPeriodText}>{`有效期 ${element.validityPeriod}`}</Text>
+                        </View>
+                        <View style={[styles.couponItemActionContainer, key === 'yet' ? {} : { padding: 0, },]}>
+                            <Text style={styles.couponItemActionText}>
+                                {this.getActionDisplayText(key)}
+                            </Text>
+                        </View>
                     </View>
                 </ImageBackground>
 
@@ -192,6 +209,23 @@ export default class MessageScreen extends Component {
         );
     }
 
+    getActionDisplayText = (key) => {
+        let text = '';
+        switch (key) {
+          case 'expired': {
+            text = '已过期';
+            break;
+          }
+          case 'yet': {
+            text = '立即领取';
+            break;
+          }
+          default: {
+            text = '已领取';
+          }
+        }
+        return text;
+      }
 
     buildFlatList = (dataSource, refreshing, key = 'default') => {
         return (
@@ -217,7 +251,7 @@ export default class MessageScreen extends Component {
         const { couponYetList, refreshing, } = this.state;
         return (
             <View style={[styles.container, {},]}>
-                {this.buildFlatList(couponYetList, refreshing,)}
+                {this.buildFlatList(couponYetList, refreshing, 'yet')}
             </View>
         );
     }
@@ -365,23 +399,76 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.01)',
     },
-    card: {
-        borderWidth: 1,
-        backgroundColor: '#fff',
-        borderColor: 'rgba(0,0,0,0.1)',
-        margin: 5,
-        height: 150,
-        padding: 15,
-        shadowColor: '#ccc',
-        shadowOffset: { width: 2, height: 2, },
-        shadowOpacity: 0.5,
-        shadowRadius: 3,
-    },
     couponItemBgImage: {
         height: 80,
         width: '100%',
+        flexDirection: 'row',
     },
     renderItemSeparator: {
         height: 10,
     },
+    couponValueText: {
+        fontSize: 46,
+        color: 'white',
+        // fontWeight: 'bold',
+    },
+    couponItemContainer: {
+        flexDirection: 'row',
+        paddingVertical: 6,
+        paddingHorizontal: 12,
+        flex: 1,
+    },
+    couponItemValueContainer: {
+        flexDirection: 'row',
+        // backgroundColor: 'red',
+        // opacity: 0.5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingLeft: 12,
+        // paddingTop: 10,
+        width: 120,
+      },
+      couponCurrencySymbolCircle: {
+        backgroundColor: 'white',
+        borderRadius: 9,
+        height: 18,
+        width: 18,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: -12,
+      },
+      grayBackground: {
+        backgroundColor: 'white',
+      },
+      couponCurrencySymbolText: {
+        fontSize: 15,
+        color: 'orange',
+      },
+      couponItemInfoContainer: {
+        flex: 1,
+        // backgroundColor: 'green',
+        // opacity: 0.5,
+        justifyContent: 'center',
+      },
+      couponTitleText: {
+        fontSize: 15,
+        color: 'white',
+        fontWeight: 'bold',
+      },
+      couponValidityPeriodText: {
+        fontSize: 8,
+        color: 'white',
+      },
+      couponItemActionContainer: {
+        width: 60,
+        // backgroundColor: 'blue',
+        // opacity: 0.5,
+        padding: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      couponItemActionText: {
+        fontSize: 18,
+        color: 'white',
+      },
 });
