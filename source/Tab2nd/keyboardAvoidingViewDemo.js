@@ -47,29 +47,40 @@ export default class KeyboardAvoidingViewDemo extends Component {
         this.keyboardWillShowListener && this.keyboardWillShowListener.remove();
         this.keyboardWillHideListener && this.keyboardWillHideListener.remove();
 
-        this.keyboardDidShowListener && this.keyboardDidShowListener.remove();
-        this.keyboardDidHideListener && this.keyboardDidHideListener.remove();
+        // this.keyboardDidShowListener && this.keyboardDidShowListener.remove();
+        // this.keyboardDidHideListener && this.keyboardDidHideListener.remove();
     }
 
     keyboardDidShow = (e) => {
-        // console.log('keyboardDidShow', e.startCoordinates.height);
-        this.setState({
-            kbShowPositionY: this.state.scrollViewPositionY,
-        });
-        this._scrollView.scrollTo({ x: 0, y: this.state.kbShowPositionY + this.state.keyboardHight, animated: true });
+        // console.log('keyboardDidShow', e.endCoordinates.height);
+        // this.setState({
+        //     kbShowPositionY: this.state.scrollViewPositionY,
+        // });
+        const yTo = this.state.scrollViewPositionY + e.endCoordinates.height;
+        console.log('keyboardDidShow', yTo, e);
+        this.scrollView.scrollTo({ x: 0, y: yTo, animated: true });
     }
 
     keyboardDidHide = () => {
-        this._scrollView.scrollTo({ x: 0, y: this.state.kbShowPositionY, animated: true });
+        const yTo = this.state.scrollViewPositionY;
+        console.log('keyboardDidHide', yTo);
+        this.scrollView.scrollTo({ x: 0, y: yTo, animated: true });
     }
 
 
 
     handleScroll = (event) => {
         let y = event.nativeEvent.contentOffset.y
-        // console.log(y);
+        console.log('handleScroll', y, event);
         this.setState({
             scrollViewPositionY: y,
+        });
+    }
+
+    onFocus = (e) => {
+        console.log('onFocus', e);
+        this.view.measure((fx, fy, width, height, px, py) => {
+            console.log('measure ', fx, fy, width, height, px, py);
         });
     }
 
@@ -78,16 +89,17 @@ export default class KeyboardAvoidingViewDemo extends Component {
         let numbersOfInput = 15;
         for (let i = 0; i < numbersOfInput; i++) {
             let item = (
-                <View style={styles.sectionContainer}>
+                <View style={styles.sectionContainer} key={String(i)} ref={view => this.view = view}>
                     <View style={styles.sectionTitleContainer}>
                         <Text style={styles.sectionTitleText}>{`输入信息 - ${i}`}</Text>
                     </View>
                     <View style={styles.inputContainer} >
                         <TextInput
-                            autoFocus={true}
+                            // autoFocus={true}
                             underlineColorAndroid={'transparent'}
                             placeholder={`信息 - ${i}`}
                             style={[styles.inputBox]}
+                            onFocus={e => this.onFocus(e)}
                             onChangeText={(name) => { this.setState({ name }) }}
                         />
                     </View>
@@ -106,7 +118,7 @@ export default class KeyboardAvoidingViewDemo extends Component {
                 >
 
                     <ScrollView
-                        ref={component => this._scrollView = component}
+                        ref={(component) => { this.scrollView = component; }}
                         // scrollEnabled={false}
                         // keyboardShouldPersistTaps={true}
                         onScroll={this.handleScroll}
